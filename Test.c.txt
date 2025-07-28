@@ -1,9 +1,0 @@
-void main(){
-
-int a=0;
-this is from dev
-
-printf("print");
-}
-
-}
