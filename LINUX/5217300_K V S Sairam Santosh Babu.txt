@@ -1,0 +1,135 @@
+root@DESKTOP-OBGB99J:~# history
+    1  ls
+    2  cd ./
+    3  ls
+    4  cd ..
+    5  ped
+    6  pwd
+    7  ls
+    8  mkdir
+    9  mkdir 5217300
+   10  ls
+   11  pwd
+   12  cd
+   13  ls
+   14  cd /C:/Users/venka/OneDrive/Desktop/Linux
+   15  cd \C:\Users\venka\OneDrive\Desktop\Linux
+   16  ls
+   17  pwd
+   18  mkdir ram
+   19  cd
+   20  cd 5217300
+   21  rmdir
+   22  rmdir ram
+   23  cd..
+   24  cd . .
+   25  ls
+   26  pwd
+   27  mkdir d
+   28  cd
+   29  rmdir
+   30  rmdir --help
+   31  rmdir d
+   32  ls
+   33  rmdir ram
+   34  ls
+   35  mkdir sai
+   36  mv sai ram
+   37  ls
+   38  locate
+   39  touch j
+   40  ls
+   41  rm j
+   42  ls
+   43  cat ram
+   44  cd ram
+   45  cat kbjsvjc
+   46  ls
+   47  cd ram
+   48  cat text
+   49  ls
+   50  cat text.txt
+   51  clear
+   52  ps
+   53  grep
+   54  grep ram
+   55  ls
+   56  date
+   57  bc
+   58  date
+   59  bc
+   60  sudo apt update
+   61  sudo apt upgrade
+   62  echo $SHEEL
+   63  echo $SHELL
+   64  printenv SHELL
+   65  whoami
+   66  whatisecho
+   67  whatis echo
+   68  whatis whoami
+   69  whatis cat
+   70  whereis cat
+   71  whereis gcc
+   72  info cat
+   73  sudo apt install gcc
+   74  sudo apt install build-essential
+   75  date
+   76  date "+%D"
+   77  date "+%D %T"
+   78  date "+%Y-%m-%d"
+   79  date "+%Y/%m/%d"
+   80  date "+%A %B %d %Y %T"
+   81  date --date "tomorrow"
+   82  date --date "2 years ago"
+   83  man date
+   84  cal
+   85  sudo apt install ncal
+   86  cal
+   87  cal 7 2025
+   88  cal 5 2025
+   89  cal  2025
+   90  cal -3 2025
+   91  cal -3
+   92  ps
+   93  bc
+   94  bc <<< "12/5"
+   95  bc <<< "scale=2; 12/5"
+   96  bc <<< "2>5"
+   97  bc <<< "2^10"
+   98  uname
+   99  uname -o
+  100  uname -i
+  101  uname -n
+  102  uname -v
+  103  uname -s
+  104  uname -m
+  105  uname -r
+  106  uname -a
+  107  echo "Welcome to Linux"
+  108  echo -e "HEllo \t World"
+  109  echo -n "HEllo World"
+  110  echo "Welcome to
+\"Linux\""
+  111  echo date
+  112  echo `date`
+  113  echo "This is
+Linux
+Training
+for
+Notchup
+July 2025"
+  114  echo "This is Linux Training for Notchup July 2025"
+  115  printf "Linux training"
+  116  printf "Linux training\n"
+  117  printf "My shell is %s\n" $SHELL
+  118  seq 1 10
+  119  seq 1 3 10
+  120  seq 10 -1 1
+  121  seq 20 -2 0
+  122  seq -s "" 10
+  123  seq -s ""5 10
+  124  seq -s "" 5 10
+  125  seq -s 5 10
+  126  seq -s "" 5 3 50
+  127  rev<<<Linux
+  128  history

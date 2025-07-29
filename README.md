@@ -10,5 +10,5 @@ AGILE FOR BEGINNERS QUIZ MARKS
 
 SIMPLILEARN GIT TRAINING CERTIFICATE
 
-<img src="https://github.com/Ram13-DS/5217300_K-V-S-Sairam-Santosh-Babu/blob/Main/GIT/5217300_K%20V%20S%20Sairam%20Santosh%C2%A0Babu.pdff" alt="pdf">
+<img src="https://github.com/Ram13-DS/5217300_K-V-S-Sairam-Santosh-Babu/blob/Main/GIT/5217300_K%20V%20S%20Sairam%20Santosh%C2%A0Babu.jpg" alt="image">
 
