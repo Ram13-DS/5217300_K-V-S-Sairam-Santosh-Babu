@@ -1,0 +1,52 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'plusMinus' function below.
+#
+# The function accepts INTEGER_ARRAY arr as parameter.
+#
+
+
+    
+def Count_positive(arr):
+    c=0
+    for x in arr:
+        if x>0:
+            c+=1
+    return c
+def Count_Zero(arr):
+    c=0
+    for x in arr:
+        if x==0:
+            c+=1
+    return c
+def Count_negative(arr):
+    c=0
+    for x in arr:
+        if x<0:
+            c+=1
+    return c
+def plusMinus(arr):
+    x=len(arr)
+    r=[]
+    a=Count_positive(arr)
+    r.append(f"{a/x:.6f}")
+    b=Count_negative(arr)
+    r.append(f"{b/x:.6f}")
+    c=Count_Zero(arr)
+    r.append(f"{c/x:.6f}")
+    for i in r:
+        print(i)
+
+if __name__ == '__main__':
+    n = int(input().strip())
+
+    arr = list(map(int, input().rstrip().split()))
+
+    plusMinus(arr)
