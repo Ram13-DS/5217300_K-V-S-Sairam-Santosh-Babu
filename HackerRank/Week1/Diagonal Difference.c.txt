@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int diagonalDifference(int a[][100],int n) {
+    int b=0;
+    int c=0;
+    for (int i=0;i<n;i++){
+        b+=a[i][i];
+        c+=a[i][n-1-i];}
+    return abs(b-c);
+}
+
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int a[n][100];
+    for (int i=0;i<n;i++){
+        for (int j=0;j<n;j++){
+        scanf("%d",&a[i][j]);
+    }}
+    int r=diagonalDifference(a, n);
+    printf("%d\n",r);
+    return 0;
+}
+
