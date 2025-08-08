@@ -1,0 +1,53 @@
+#include <stdio.h>
+
+
+void asc(int a[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (a[j] > a[j + 1]) {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+}
+
+void dcs(int a[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (a[j] < a[j + 1]) {
+                int temp = a[j];
+                a[j] = a[j + 1];
+                a[j + 1] = temp;
+            }
+}
+
+int TwoArrays(int k,int a[],int b[],int n){
+    asc(a,n);
+    dcs(b,n);
+    for(int i=0;i<n;i++){
+        if(a[i]+b[i]<k)
+            return 0; 
+    }
+    return 1;
+}
+int main()
+{
+    int q;
+    scanf("%d",&q);
+    for(int i=0;i<q;i++){
+        int n,k;
+        scanf("%d %d",&n ,&k);
+        int a[n],b[n];
+        for (int i=0;i<n;i++)
+            scanf("%d",&a[i]);
+        for (int i=0;i<n;i++)
+            scanf("%d",&b[i]);
+        if(TwoArrays(k,a, b,n))
+            printf("YES\n");
+        else 
+            printf("NO\n");
+    }
+    
+    
+    return 0;
+}
