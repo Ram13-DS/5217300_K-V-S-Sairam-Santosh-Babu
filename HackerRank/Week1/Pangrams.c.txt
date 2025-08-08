@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include <ctype.h>  
+
+
+
+int  ispangram(char s[]) {
+    int a[26]={0};
+    for (int i=0;s[i]!='\0';i++){
+        char c=tolower(s[i]);
+        if (c>='a' && c<='z'){
+            a[c-'a']=1;
+        }
+    }
+    for (int i=0;i<26;i++){
+        if (a[i]==0)
+            return 0;
+    }
+    return 1;
+     
+}
+
+int main()
+{
+    char s[1000];
+    scanf("%[^\n]",s);
+    if(ispangram(s))
+        printf("pangram\n");
+    else
+        printf("not pangram\n");
+    return 0;
+}
+
