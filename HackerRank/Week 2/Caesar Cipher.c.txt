@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int main(){
+    int n ,k;
+    char s[100];
+    
+    scanf("%d",&n);
+    scanf("%s",s);
+    scanf("%d",&k);
+    
+    k%=26;
+    
+    for(int i=0;s[i]!='\0';i++){
+        char c=s[i];
+        if (islower(c)){
+            s[i]=((c-'a'+k)%26)+'a';
+        }
+        else if (isupper(c)){
+            s[i]=((c-'A'+k)%26)+'A';
+    }
+    }
+    printf("%s",s);
+    return 0;
+}
