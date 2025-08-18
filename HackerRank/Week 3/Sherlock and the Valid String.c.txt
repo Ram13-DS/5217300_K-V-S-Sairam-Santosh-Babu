@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char s[100005];
+    int f[26] = {0};
+    int count[26];
+    int i, j, c, min, max, minc, maxc;
+
+    scanf("%s", s);
+    int n = strlen(s);
+
+    for (i = 0; i < n; i++) f[s[i] - 'a']++;
+
+    c = 0;
+    for (i = 0; i < 26; i++) {
+        if (f[i] > 0) {
+            count[c++] = f[i];
+        }
+    }
+
+    min = count[0];
+    max = count[0];
+    for (i = 1; i < c; i++) {
+        if (count[i] < min) min = count[i];
+        if (count[i] > max) max = count[i];
+    }
+
+    if (min == max) {
+        printf("YES\n");
+        return 0;
+    }
+
+    minc = 0;
+    maxc = 0;
+    for (i = 0; i < c; i++) {
+        if (count[i] == min) minc++;
+        else if (count[i] == max) maxc++;
+    }
+
+    if ((min == 1 && minc == 1 && minc + maxc == c) ||
+        (max - min == 1 && maxc == 1 && minc + maxc == c))
+        printf("YES\n");
+    else
+        printf("NO\n");
+
+    return 0;
+}

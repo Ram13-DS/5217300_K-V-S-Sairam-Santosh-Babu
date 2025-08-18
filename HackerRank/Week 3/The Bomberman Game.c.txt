@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int R, C, N;
+char grid[201][201], result[201][201];
+
+void detonate(char src[201][201], char dest[201][201]) {
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) dest[i][j] = 'O';
+        dest[i][C] = '\0';
+    }
+    for (int i = 0; i < R; i++) {
+        for (int j = 0; j < C; j++) {
+            if (src[i][j] == 'O') {
+                dest[i][j] = '.';
+                if (i > 0) dest[i-1][j] = '.';
+                if (i < R-1) dest[i+1][j] = '.';
+                if (j > 0) dest[i][j-1] = '.';
+                if (j < C-1) dest[i][j+1] = '.';
+            }
+        }
+    }
+}
+
+int main() {
+    scanf("%d %d %d", &R, &C, &N);
+    for (int i = 0; i < R; i++) scanf("%s", grid[i]);
+
+    if (N == 1) {
+        for (int i = 0; i < R; i++) printf("%s\n", grid[i]);
+    } else if (N % 2 == 0) {
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) printf("O");
+            printf("\n");
+        }
+    } else {
+        char after1[201][201];
+        detonate(grid, after1);
+        if (N % 4 == 3) {
+            for (int i = 0; i < R; i++) printf("%s\n", after1[i]);
+        } else {
+            detonate(after1, result);
+            for (int i = 0; i < R; i++) printf("%s\n", result[i]);
+        }
+    }
+    return 0;
+}
