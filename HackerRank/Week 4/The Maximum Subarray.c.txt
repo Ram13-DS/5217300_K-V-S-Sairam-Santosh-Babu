@@ -1,0 +1,33 @@
+#include <stdio.h>
+
+int max(int a, int b) {
+    return a > b ? a : b;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t);
+    while (t--) {
+        int n;
+        scanf("%d", &n);
+        int arr[n];
+        for (int i = 0; i < n; i++)
+            scanf("%d", &arr[i]);
+
+        int ms = arr[0], cs = arr[0];
+        int ms1 = arr[0];
+
+        for (int i = 1; i < n; i++) {
+            cs = max(arr[i], cs + arr[i]);
+            ms = max(ms, cs);
+
+            if (arr[i] > 0 && ms1 > 0)
+                ms1 += arr[i];
+            else if (arr[i] > ms1)
+                ms1 = arr[i];
+        }
+
+        printf("%d %d\n", ms, ms1);
+    }
+    return 0;
+}

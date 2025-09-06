@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    int n,k,i,l,r;
+    scanf("%d %d",&n,&k);
+    char str[n+1];
+    char hash[n];
+    scanf("%s",str);
+    for(i=0;i<n;i++){
+        hash[i] = '0';
+    }
+    l=0,r=n-1;
+    while(l<r){
+        if(str[l]!=str[r]){
+            if(k==0){
+                printf("-1");
+                return 0;
+            }
+            if(str[l]<str[r]){
+                str[l] = str[r];
+                hash[l] = '1';
+            }
+            else{
+                str[r] = str[l];
+                hash[r] = '1';
+            }
+            k--;
+        }
+        l++;
+        r--;
+    }
+    l=0,r=n-1;
+    while(l<r && k>0){
+        if(str[l]!='9'){
+            if(hash[l]=='1'||hash[r]=='1'){
+                str[l] = str[r] = '9';
+                k--;
+            }
+            else if(k>1){
+                str[l] = str[r] = '9';
+                k-=2;
+            }
+        }
+        l++;
+        r--;
+    }
+    if(l==r && k>0)
+        str[l] = '9';
+    printf("%s",str);
+    return 0;
+}

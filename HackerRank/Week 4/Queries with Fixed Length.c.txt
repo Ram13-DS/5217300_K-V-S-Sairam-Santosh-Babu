@@ -1,0 +1,31 @@
+#include <stdio.h>
+
+#define MAXN 100000
+
+int a[MAXN], qv[105];
+int dq[MAXN];
+
+int solveQuery(int n, int d) {
+    int f = 0, b = 0;
+    int winMax[MAXN], m = 0;
+
+    for (int i = 0; i < n; i++) {
+        while (f < b && dq[f] <= i - d) f++;
+        while (f < b && a[dq[b - 1]] <= a[i]) b--;
+        dq[b++] = i;
+        if (i >= d - 1) winMax[m++] = a[dq[f]];
+    }
+
+    int ans = winMax[0];
+    for (int i = 1; i < m; i++) if (winMax[i] < ans) ans = winMax[i];
+    return ans;
+}
+
+int main() {
+    int n, q;
+    scanf("%d %d", &n, &q);
+    for (int i = 0; i < n; i++) scanf("%d", &a[i]);
+    for (int i = 0; i < q; i++) scanf("%d", &qv[i]);
+    for (int i = 0; i < q; i++) printf("%d\n", solveQuery(n, qv[i]));
+    return 0;
+}

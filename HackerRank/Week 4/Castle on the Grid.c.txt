@@ -1,0 +1,84 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    int x;
+    int y;
+} Gridpoint;
+
+int insertGrid(Gridpoint *queue, int x, int y, int wr_ptr) {
+    queue[wr_ptr].x = x;
+    queue[wr_ptr].y = y;
+    return wr_ptr + 1;
+}
+
+int MovePath(int **grid, int x, int y, int N, int wr_ptr, Gridpoint *queue) {
+    int step = grid[x][y] + 1;
+    for (int i = x - 1; i >= 0; i--) {
+        if (grid[i][y] == -1) break;
+        if (grid[i][y] == 0) {
+            grid[i][y] = step;
+            wr_ptr = insertGrid(queue, i, y, wr_ptr);
+        }
+    }
+    for (int i = x + 1; i < N; i++) {
+        if (grid[i][y] == -1) break;
+        if (grid[i][y] == 0) {
+            grid[i][y] = step;
+            wr_ptr = insertGrid(queue, i, y, wr_ptr);
+        }
+    }
+    for (int i = y + 1; i < N; i++) {
+        if (grid[x][i] == -1) break;
+        if (grid[x][i] == 0) {
+            grid[x][i] = step;
+            wr_ptr = insertGrid(queue, x, i, wr_ptr);
+        }
+    }
+    for (int i = y - 1; i >= 0; i--) {
+        if (grid[x][i] == -1) break;
+        if (grid[x][i] == 0) {
+            grid[x][i] = step;
+            wr_ptr = insertGrid(queue, x, i, wr_ptr);
+        }
+    }
+    return wr_ptr;
+}
+
+int main() {
+    int N;
+    scanf("%d", &N);
+
+    int **grid = malloc(sizeof(int *) * N);
+    char tmp;
+    for (int i = 0; i < N; i++) {
+        grid[i] = malloc(sizeof(int) * N);
+        for (int j = 0; j < N; j++) {
+            scanf(" %c", &tmp);
+            grid[i][j] = (tmp == 'X') ? -1 : 0;
+        }
+    }
+
+    int cur_x, cur_y, end_x, end_y;
+    scanf("%d %d %d %d", &cur_x, &cur_y, &end_x, &end_y);
+
+    Gridpoint *queue = malloc(sizeof(Gridpoint) * N * N);
+    int wr_ptr = 0;
+    int rd_ptr = 0;
+    queue[wr_ptr++] = (Gridpoint){cur_x, cur_y};
+    grid[cur_x][cur_y] = 1;
+
+    while (rd_ptr < wr_ptr) {
+        cur_x = queue[rd_ptr].x;
+        cur_y = queue[rd_ptr].y;
+        wr_ptr = MovePath(grid, cur_x, cur_y, N, wr_ptr, queue);
+        rd_ptr++;
+    }
+
+    printf("%d", grid[end_x][end_y] - 1);
+
+    for (int i = 0; i < N; i++) free(grid[i]);
+    free(grid);
+    free(queue);
+    return 0;
+}
