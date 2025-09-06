@@ -1,0 +1,74 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+    long long value;
+    int index;
+} Element;
+
+int compareAsc(const void *a, const void *b) {
+    long long diff = ((Element*)a)->value - ((Element*)b)->value;
+    return (diff > 0) - (diff < 0);
+}
+
+int compareDesc(const void *a, const void *b) {
+    long long diff = ((Element*)b)->value - ((Element*)a)->value;
+    return (diff > 0) - (diff < 0);
+}
+
+int countSwaps(long long *arr, int n, int descending) {
+    Element *sorted = malloc(n * sizeof(Element));
+    int *visited = calloc(n, sizeof(int));
+
+    for (int i = 0; i < n; i++) {
+        sorted[i].value = arr[i];
+        sorted[i].index = i;
+    }
+
+    qsort(sorted, n, sizeof(Element), descending ? compareDesc : compareAsc);
+
+    int swaps = 0;
+
+    for (int i = 0; i < n; i++) {
+        if (visited[i] || sorted[i].index == i)
+            continue;
+
+        int cycle_size = 0;
+        int j = i;
+
+        while (!visited[j]) {
+            visited[j] = 1;
+            j = sorted[j].index;
+            cycle_size++;
+        }
+
+        if (cycle_size > 1)
+            swaps += (cycle_size - 1);
+    }
+
+    free(sorted);
+    free(visited);
+    return swaps;
+}
+
+int lilysHomework(long long *arr, int n) {
+    int asc = countSwaps(arr, n, 0);
+    int desc = countSwaps(arr, n, 1);
+    return asc < desc ? asc : desc;
+}
+
+int main() {
+    int n;
+    scanf("%d", &n);
+
+    long long *arr = malloc(n * sizeof(long long));
+    for (int i = 0; i < n; i++) {
+        scanf("%lld", &arr[i]);
+    }
+
+    int result = lilysHomework(arr, n);
+    printf("%d\n", result);
+
+    free(arr);
+    return 0;
+}

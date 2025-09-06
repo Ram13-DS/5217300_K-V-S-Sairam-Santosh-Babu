@@ -1,0 +1,67 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define MAX 1000000
+
+typedef long long ll;
+
+void swap(ll *a, ll *b) {
+    ll t=*a; *a=*b; *b=t;
+}
+
+void heapifyDown(ll arr[], int n, int i) {
+    int smallest=i, l=2*i+1, r=2*i+2;
+    if(l<n && arr[l]<arr[smallest]) smallest=l;
+    if(r<n && arr[r]<arr[smallest]) smallest=r;
+    if(smallest!=i) {
+        swap(&arr[i],&arr[smallest]);
+        heapifyDown(arr,n,smallest);
+    }
+}
+
+void heapifyUp(ll arr[], int i) {
+    while(i>0) {
+        int p=(i-1)/2;
+        if(arr[i]<arr[p]) {
+            swap(&arr[i],&arr[p]);
+            i=p;
+        } else break;
+    }
+}
+
+ll extractMin(ll arr[], int *n) {
+    ll root=arr[0];
+    arr[0]=arr[*n-1];
+    (*n)--;
+    heapifyDown(arr,*n,0);
+    return root;
+}
+
+void insert(ll arr[], int *n, ll val) {
+    arr[*n]=val; (*n)++;
+    heapifyUp(arr,*n-1);
+}
+
+int cookies(ll k, ll arr[], int n) {
+    for(int i=n/2-1;i>=0;i--) heapifyDown(arr,n,i);
+    int ops=0;
+    while(n>0 && arr[0]<k) {
+        if(n<2) return -1;
+        ll a=extractMin(arr,&n);
+        ll b=extractMin(arr,&n);
+        insert(arr,&n,a+2*b);
+        ops++;
+    }
+    return ops;
+}
+
+int main() {
+    int n;
+    ll k;
+    scanf("%d %lld",&n,&k);
+    ll *arr = malloc(n * sizeof(ll));
+    for(int i=0;i<n;i++) scanf("%lld",&arr[i]);
+    printf("%d\n",cookies(k,arr,n));
+    free(arr);
+    return 0;
+}
